@@ -42,12 +42,12 @@ def wikipedia_game_solver(start_page, target_page):
         for node in next_level:
             if node not in visited:
                 queue.put(node)
+                visited.append(node)
                 parent[node] = current_title
 
                 if node == target_page.title:
-                    print(f"Breaking because {node} == {target_page.title}")
+                    queue = Queue()
                     break
-
 
     child = target_page.title
     while child != start_page.title:
@@ -63,8 +63,8 @@ def wikipedia_game_solver(start_page, target_page):
     return path
 
 # usage
-start_page = wiki_wiki.page('Nina Tandon')
-target_page = wiki_wiki.page('Chinese language')
+start_page = wiki_wiki.page('Soulseek')
+target_page = wiki_wiki.page('Message transfer agent')
 path = wikipedia_game_solver(start_page, target_page)
 print("you went from: %s" % start_page.title)
 print("all the way to: %s" % target_page.title)
